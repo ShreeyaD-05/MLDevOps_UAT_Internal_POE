@@ -1,0 +1,5 @@
+services:
+  hello:
+    build: .
+    image: hello-mlops-internal-poe:latest
+    container_name: hello-mlops-internal-poe
