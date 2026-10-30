@@ -8,12 +8,20 @@ pipeline {
         stage('Checkout from GitHub') {
             steps { checkout scm }
         }
-        stage('Setup Python venv') {
+                stage('Setup Python venv') {
             steps {
                 script {
-                    run(isUnix() ? 'python3 -m venv venv' : 'python -m venv venv')
-                    run("${py()} -m pip install --upgrade pip")
-                    run("${py()} -m pip install -r requirements.txt")
+                    if (!fileExists('venv')) {
+                        run("${basePy()} -m venv venv")
+                    } else {
+                        echo 'venv already exists - skipping creation'
+                    }
+                    if (!fileExists('venv/.deps_installed')) {
+                        run("${py()} -m pip install -r requirements.txt")
+                        writeFile file: 'venv/.deps_installed', text: 'ok'
+                    } else {
+                        echo 'Packages already installed - skipping pip install'
+                    }
                 }
             }
         }
