@@ -1,6 +1,6 @@
 def run(String cmd) { if (isUnix()) { sh cmd } else { bat cmd } }
 def py() { return isUnix() ? 'venv/bin/python' : 'venv\\Scripts\\python' }
-
+/*pipline code */
 pipeline {
     agent any
     options { timestamps() }

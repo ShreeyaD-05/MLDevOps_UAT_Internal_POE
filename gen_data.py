@@ -5,7 +5,7 @@ import pandas as pd
 rng = np.random.default_rng(7)
 N = 500
 
-
+#make function
 def make(n, time_mu, value_mu, rating_mu, upi_share):
     pay = rng.choice(["UPI", "Card", "Cash"], size=n,
                      p=[upi_share, (1 - upi_share) * 0.45, (1 - upi_share) * 0.55])

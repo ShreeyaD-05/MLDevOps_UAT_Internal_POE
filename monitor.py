@@ -22,7 +22,7 @@ for col, d in res["drift_by_columns"].items():
                  "drift_score": round(d["drift_score"], 4)})
 summary = pd.DataFrame(rows)
 summary.to_csv("reports/drift_summary.csv", index=False)
-
+#summary
 print(summary.to_string(index=False))
 print()
 print("Columns drifted:", res["number_of_drifted_columns"], "/", res["number_of_columns"])
